@@ -3,10 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discord Activity</title>
+  <title>Click the Image Game</title>
+  <style>
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+      margin-top: 50px; 
+      background: #f0f0f0;
+    }
+    #game-img {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.1s;
+    }
+    #game-img:active {
+      transform: scale(0.9);
+    }
+    #score {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, Discord!</h1>
-  <p>This is my activity page.</p>
+
+<h1>Click the Image!</h1>
+<p>Score: <span id="score">0</span></p>
+<img id="game-img" src="https://i.imgur.com/7bR6QKg.png" alt="Click me!">
+
+<script>
+  const img = document.getElementById('game-img');
+  const scoreEl = document.getElementById('score');
+  let score = 0;
+
+  // Image click event
+  img.addEventListener('click', () => {
+    score++;
+    scoreEl.textContent = score;
+
+    // Move image to a random position
+    const maxX = window.innerWidth - img.width;
+    const maxY = window.innerHeight - img.height;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    img.style.position = 'absolute';
+    img.style.left = randomX + 'px';
+    img.style.top = randomY + 'px';
+  });
+</script>
+
 </body>
 </html>
