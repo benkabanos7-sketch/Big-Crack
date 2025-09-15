@@ -1,49 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Click Big Crack</title>
-<style>
-  body { 
-    font-family: sans-serif; 
-    margin: 0; 
-    height: 100vh; 
-    background: #f0f0f0; 
-    overflow: hidden; 
-    position: relative;
-  }
-  #game-img {
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
-    transition: transform 0.1s;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #game-img:active {
-    transform: scale(0.9);
-  }
-  #leaderboard {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(255,255,255,0.9);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    min-width: 150px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click the Image Game</title>
+  <style>
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+      margin-top: 50px; 
+      background: #f0f0f0;
+    }
+    #game-img {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.1s;
+    }
+    #game-img:active {
+      transform: scale(0.9);
+    }
+    #score {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-<div id="leaderboard">
-  <p>Score: <span id="score">0</span></p>
-</div>
-
+<h1>Click the Image!</h1>
+<p>Score: <span id="score">0</span></p>
 <img id="game-img" src="https://cdn.discordapp.com/attachments/991426263552110703/1416839199520460810/noFilter.png?ex=68c99f54&is=68c84dd4&hm=b38d5d041da64256fe8290161d086aa70d4589248e6459a532ebde7f9e2cf7c4&" alt="Click me!">
 
 <script>
@@ -51,16 +38,18 @@
   const scoreEl = document.getElementById('score');
   let score = 0;
 
+  // Image click event
   img.addEventListener('click', () => {
     score++;
     scoreEl.textContent = score;
 
-    // Move image randomly within the viewport
+    // Move image to a random position
     const maxX = window.innerWidth - img.width;
     const maxY = window.innerHeight - img.height;
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
 
+    img.style.position = 'absolute';
     img.style.left = randomX + 'px';
     img.style.top = randomY + 'px';
   });
